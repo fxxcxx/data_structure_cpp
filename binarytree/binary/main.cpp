@@ -9,6 +9,7 @@ class BinaryNode{
     BinaryNode *right;
     public:
     BinaryNode(int val=0, BinaryNode *l=NULL, BinaryNode *r=NULL):data(val),left(l),right(r){}
+    //초기화 리스트, data = val left = l .. 뜻
     ~BinaryNode(){}
     
     void setData (int val) {data =val;}
@@ -23,15 +24,15 @@ class BinaryNode{
 #define MAX_QUEUE_SIZE 100
 class CircularQueue{
     int front;
-    int rear;
+    int rear; //후방
     BinaryNode* data[MAX_QUEUE_SIZE];
     public:
     CircularQueue() {front = rear=0;}
     ~CircularQueue(){}
     bool isEmpty() {return front==rear;}
-    bool isFull() {return (rear+1)%MAX_QUEUE_SIZE == front;}
+    bool isFull() {return (rear+1)%MAX_QUEUE_SIZE == front;} //큐 공부 ㄱ
     void enqueue(BinaryNode *n){
-        if( isFull() ) perror(" Error: 큐가 포화상태입니다\n");
+        if( isFull() ) perror(" Error: 큐가 포화상태입니다\n"); //error = perror 동일
         else{
             rear= (rear+1) % MAX_QUEUE_SIZE;
             data[rear]=n;
@@ -43,7 +44,7 @@ class CircularQueue{
             front = (front+1) % MAX_QUEUE_SIZE;
             return data[front];
         }
-        return 0; //return 값 없어서 오류 생김. 
+        return 0; //안 써주면 return 값 없어서 오류 생김.
     }
 
 };
@@ -79,22 +80,22 @@ class BinaryTree{
         }
         printf("\n");
     }
-    int getCount(BinaryNode *node) {
+    int getCount(BinaryNode *node) { //순환호출, 전체 노드 계산
         if(node == NULL) return 0;
         return 1 + getCount(node-> getLeft()) + getCount(node->getRight());
     }
-    int getLeafCount(BinaryNode *node) {
+    int getLeafCount(BinaryNode *node) { //단말노드 계산
         if( node ==NULL) return 0;
         if (node->isLeaf()) return 1;
         else return getLeafCount(node->getLeft())+getLeafCount(node-> getRight());
     }
-    int getHeight(BinaryNode *node) {
+    int getHeight(BinaryNode *node) { //높이, 서브트리의 높이 +1
         if(node == NULL) return 0;
       int hLeft = getHeight(node->getLeft());
       int hRight = getHeight(node->getRight());
       return (hLeft>hRight) ? hLeft+1 : hRight+1;
     }
-    int calcSize() {return calcSize(root);}
+    int calcSize() {return calcSize(root);} //폴더 용량, 후위 순회
     int calcSize (BinaryNode *node) {
         if (node == NULL) return 0;
         return node->getData() + calcSize(node->getLeft()) + calcSize(node->getRight());
@@ -147,6 +148,9 @@ class BinaryTree{
 int main()
 {
     BinaryTree tree;
+    //          A
+     //      B    C
+     //     D E  F
     BinaryNode *d= new BinaryNode('D', NULL, NULL);
     BinaryNode *e= new BinaryNode('E', NULL, NULL);
     BinaryNode *b = new BinaryNode('B', d,e);
@@ -172,7 +176,7 @@ int main()
     
     
     
-    BinaryTree tree2;
+    BinaryTree tree2; //수식트리 ㅡㅡ
     //           +
     //       *       -
     //     3       2   5   6
