@@ -17,7 +17,7 @@ public:
 		for(i=degree; i>=0; i--)
 			scanf("%f",coef+i);
 	}
-	
+	/*
 	void print(char*str){
 		int i;
 		printf("\t%s",str);
@@ -25,7 +25,7 @@ public:
 			printf("%5.1fx^%d+",coef[i],i);
 		printf("%4.1f\n", coef[0]);
 	}
-	
+	*/
 	void add(Polynomial a, Polynomial b){
 		int i;
 		if(a.degree>b.degree){
@@ -40,8 +40,9 @@ public:
 				coef[i] += a.coef[i];
 		}
 	}
-		
+		/*
 	int isZero(){return degree == 0;}
+	*/
 	
 	void display(const char*str="Poly="){
 		int i;
