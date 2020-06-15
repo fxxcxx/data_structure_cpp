@@ -15,7 +15,7 @@ public:
 		scanf("%d",&degree);
 		printf("각 항의 계수를 입력하시오 (총 %d개):",degree + 1);
 		for(i=degree; i>=0; i--)
-			scanf("%f",coef+i);
+			scanf("%f",coef+i); //!!조!심! 배열이랑 계수 특성 맞는 확인
 	}
 	/*
 	void print(char*str){
