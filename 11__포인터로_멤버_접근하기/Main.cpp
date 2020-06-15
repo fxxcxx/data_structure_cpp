@@ -12,8 +12,8 @@ class Dog{
 		name = "바둑이";
 	}
 	~Dog(){ }
-	int getAge(){return age;}
-	void setAge(int dog_age){age = dog_age;}	
+	int getAge(){return age;} //int, 단순 값 return
+	void setAge(int s){age = s;}	//void, 함수, 
 };
 
 int main()
