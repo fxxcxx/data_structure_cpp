@@ -4,7 +4,7 @@ int findMaxValue(int arr[], int size)
 {
 	int i;
 	int maxVal  = 0;
-	for(i=0;i<10;i++){
+	for(i=0;i<10;i++){ //배열 크기 정해줘서 상관없음
 		if(arr[i]>maxVal ){
 			maxVal  = arr[i];
 		}
