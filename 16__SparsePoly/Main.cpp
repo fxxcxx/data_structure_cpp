@@ -24,7 +24,7 @@ public:
 		}
 	}
 // add함수를 작성해라.
-void add(SparsePoly a, SparsePoly b)
+void add(SparsePoly a, SparsePoly b)  //ㅠㅠ
 {
 	int count = 0, bcount = 0;
 	int start = 0;
