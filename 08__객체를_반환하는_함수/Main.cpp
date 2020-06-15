@@ -8,7 +8,7 @@ public:
 };
 //필요한 부분을 작성해라.
 Pizza createPizza(){
-	Pizza p(10);
+	Pizza p(10); //class 와 동일하게 대문자로 !
 	return p;
 }
 
