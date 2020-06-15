@@ -6,7 +6,7 @@ class Circle{
 		int radius; //반지름
 		string color; //색상
 	
-		double calcArea(){
+		double calcArea(){ //실수는 double
 			return 3.14*radius*radius;
 		}
 };
@@ -18,5 +18,6 @@ int main(){
 	obj.color = "blue";
 	
 	cout<<"원의 면적 ="<<obj.calcArea()<<"\n";
+	cout<<"원으 색깔 =" <<obj.color;
 	return 0;
 }
