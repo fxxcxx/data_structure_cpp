@@ -7,7 +7,7 @@ public:
 	int size;			// 단위: 인치
 };
 
-	void makeDouble(Pizza& p) //일반적인 함수, 복사해서 넘어간다 
+	void makeDouble(Pizza& p) //일반적인 함수, 복사해서 넘어간다  p로 받음
 		//참조자를 사용하여 객체를 변경하면 원 객체도 변경 된다. 기호는 &
 {
 	p.size *= 2;
