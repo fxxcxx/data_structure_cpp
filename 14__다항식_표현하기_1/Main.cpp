@@ -1,6 +1,6 @@
 #include<stdio.h>
 
-#define MAX_DEGREE 80
+#define MAX_DEGREE 80 //최고차수는 80
 
 class Polynomial{
 	
@@ -45,21 +45,21 @@ public:
 	
 	void display(const char*str="Poly="){
 		int i;
-		printf("\t%s", str);
-		for(i=degree; i>0; i--){
-			if(coef[i] != 0){
-				if(i != degree)
-					printf("+");
+		printf("\t%s", str); //탭
+		for(i=degree; i>0; i--){ //차수
+			if(coef[i] != 0){ //차수가 0이 아니면 실시, 계속 돌다 숫자항 나오며 탈출
+				if(i != degree) //차수와 i가 다르면
+					printf("+"); // 플러스, 이건 처음에 안붙이려고 쓰는거
 				
-				if(coef[i]==1)
+				if(coef[i]==1) //x앞에 뭐 안붙음
 					printf("x^%d",i);
 				
-				else
+				else //1아니야? 그럼 숫자 붙여
 					printf("%5.1fx^%d",coef[i],i);
 			}
 		}
 		
-		if(coef[0]!=0)
+		if(coef[0]!=0) //숫자항이 0이면 안써도 됨. 근데 0이 아니면 배열에 들어있는 값 써줘
 			printf("+%4.1f\n",coef[0]);
 		}
 	};
