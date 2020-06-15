@@ -18,10 +18,10 @@ class Dog{
 
 int main()
 {
-	Dog * pDog=new Dog;
-	cout << "강아지의 나이:"<<pDog->getAge()<<endl;
+	Dog * pDog=new Dog; //pDog 포인터 생성
+	cout << "강아지의 나이:"<<pDog->getAge()<<endl; //괄 호
 	
-	pDog->setAge(5);
+	pDog->setAge(5); //pointer는 화살표로 움직입니다.
 	cout<<"강아지의 나이:"<<pDog->getAge()<<endl;
 	
 	delete pDog;
