@@ -12,9 +12,11 @@ class Rectangle{
 		int calcArea();
 };
 
+//class내 외부 선언 -> ::
+
 Rectangle::Rectangle(int w, int h){ //생성자 외부 선언
 	width = w;
-	height = h;
+	height = h; //class 안의 함수형태로 바꿔줌
 }
 
 int Rectangle::calcArea(){ //클래스 외부에서 멤버함수 정의
