@@ -7,7 +7,8 @@ class Complex{
 	int imag;
 	
 	public:
-	Complex(){}	
+	Complex(){}	//생성자, 얜 지우면 에러남
+	  ~Complex() {}; //소멸자, 안넣어도 에러는 안남
 	
 	Complex(int r, int i){
 		real = r; 
@@ -15,13 +16,13 @@ class Complex{
 	}
 	void add(Complex a, Complex b)
 	{
-		real = a.real + b.real;
+		real = a.real + b.real; //겁먹지마 다른것들 덧셈이라 Complex로 받아야된다..!
 		imag = a.imag + b.imag;
 	}
 	
 	void print()
 	{
-		if(imag>0)
+		if(imag>0) //!!class public과 동일하게
 		cout<<"("<<real<<"+"<<imag<<"i"<<")"<<endl;	
 		else
 		cout<<"("<<real<<imag<<"i"<<")"<<endl;
