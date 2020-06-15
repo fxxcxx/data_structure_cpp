@@ -1,15 +1,39 @@
-//
-//  main.cpp
-//  test
-//
-//  Created by minjung kang on 15/06/2020.
-//  Copyright © 2020 ming. All rights reserved.
-//
+#include<iostream>
+using namespace std;
 
-#include <iostream>
+class Dog{
+    private:
+    int*pWeight;
+    int*pAge;
+    
+    public:
+        Dog(){
+            pAge = new int(1);
+            pWeight=new int(10);
+        }
+    
+    ~Dog(){
+        delete pAge;
+        delete pWeight;
+    }
+    
+    int getAge(){return*pAge;}
+    void setAge(int age){*pAge = age;}
+    int getWeight(){return*pWeight;}
+    void setWeight(int weight) {*pWeight=weight;}
+};
 
-int main(int argc, const char * argv[]) {
-    // insert code here...
-    std::cout << "Hello, World!\n";
+int main()
+{
+        Dog*pDog=new Dog;
+        cout<<"강아지의 나이:"<<pDog->getAge()<<endl;
+        cout<<"갱얼쥐 몸무게:"<<pDog->getWeight()<<endl;
+    
+        pDog->setAge(5);
+        cout<<"강아지의 나이:"<<pDog->getAge()<<endl;
+    pDog->setWeight(20);
+    cout<<"갱얼쥐 살찜:"<<pDog->getWeight()<<endl;
+    
+    delete pDog;
     return 0;
 }
