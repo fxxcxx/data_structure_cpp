@@ -1,97 +1,96 @@
-//여기에 코딩하시오.
 #pragma once
+#define _CRT_SECURE_NO_WARNINGS
 #include <stdio.h>
-#include <stdlib.h>
-#define MAX_STACK_SIZE 100
+#include <string.h>
+#define MAX_STRING    100
 
-inline void error(char* str){
-        fprintf(stderr, "%s\n", str);
-        exit(1);
+class Student
+{
+    int id;
+    char name[MAX_STRING];
+    char dept[MAX_STRING];
+    //private
+    
+    public:
+    Student(int i=0, char* nam="", char* dep=""){
+        set(i, nam, dep);
+    }
+    void set(int i, char* nam, char* dep){
+        id = i;
+        strcpy(name, nam);
+        strcpy(dept, dep);
+    }
+    void display(){
+        printf("ID:%-15d Name:%-10s Major:%-20s\n", id, name, dept);
+    }
+
+
 };
 
-class ArrayStack
+class Node : public Student //상속, 노드가 스튜던트 클래스를 상속, 멤버함수 다 쓸 수 있다.
 {
-    char data[MAX_STACK_SIZE];
-    int top;
-public:
-        ArrayStack() {top = -1;}
-        bool isEmpty() {return top == -1;}
-        bool isFull() {return top == MAX_STACK_SIZE-1;}
+    Node* link; //다음 노드를 가리키는 포인터 변수 n.link ㄴㄴ / n.getlink ㅇㅇ 퍼블릭으로 접근
+    public:
+        Node(int id=0, char* name="", char* dept="")
+            : Student(id, name, dept) {link = NULL;}
+    ~Node(void) {}
     
-    void push (char e){
-        if(isFull()) error ("스택 포화 에러");
-        data[++top]=e;
-    }
-    char pop(){
-        if(isEmpty()) error("스택 공백 에러");
-        return data[top--];
-    }
-    
-    char peek(){
-        if(isEmpty()) error("스택 공백 에러");
-        return data[top];
-    }
+    Node* getLink() {return link;}
+    void setLink(Node *p) {link = p;}
 };
 
-inline int precedence(char op)
-{
-    switch (op){
-        case '(':case')':return 0;
-        case '+':case'-':return 1;
-        case '*':case'/':return 2;
-    }
-    
-    return -1;
-}
 
-void infix2Postfix(FILE *fp = stdin)
+
+class LinkedStack
 {
-    char c, op;
-    double val;
-    ArrayStack st;
+    Node* top;
+    //top을 포인터로 지정
     
-    while ((c=getc(fp)) != '\n'){
-        
-        if((c>='0' && c<='9')){
-            ungetc(c, fp);
-            fscanf(fp, "%lf", &val);
-            
-            printf("%4.1f",val);
-        }
-        
-        else if(c=='(')
-            st.push(c);
-        
-        else if(c==')'){
-            while(!st.isEmpty()) {
-                op = st.pop();
-                if(op=='()') break;
-                else printf("%c", op);
-            }
-        }
-        
-        else if(c=='+'||c=='-'||c=='*'||c=='/'){
-            while (!st.isEmpty()) {
-                op = st.peek();
-                if(precedence(c) <= precedence(op)) {
-                    printf("%c", op);
-                    st.pop();
-                }
-                else break;
-            }
-            st.push(c);
-        }
+    public:
+    LinkedStack() {top=NULL;} //-1대신 null(연결리스트니겐) //생성자
+    ~LinkedStack() {while(!isEmpty()) delete pop();} //소멸자 종료될때 계속 지움
+    bool isEmpty() {return top==NULL;}
+    
+    void push(Node *n){
+        if(isEmpty()) top = n;
+        else {
+            n->setLink(top); //n이 가리키는 링크 셋링크(밑에 탑)
+            top = n; //탑이 가리키는 링크는 n이 됨
+        } //data[++top} = e;와 동일
     }
     
-    while (!st.isEmpty())
-        printf("%c",st.pop());
-}
+    Node* pop() {
+        if(isEmpty()) return NULL;
+        Node *n = top;
+            top = top->getLink();
+        return n;
+    }
+    
+    Node* peek() {return top;}
+    
+    void display() {
+        printf("[LinkedStack]\n");
+        for(Node *p = top; p != NULL; p=p->getLink()) //p=p->link; 동일, public 멤버함수로 변경
+            p->display();
+        printf("\n");
+    }
+    
+};
 
 int main()
 {
-    printf("수식 입력 (infix) = ");
-    infix2Postfix();
+    LinkedStack stack;
+    stack.push(new Node(2015130007, "Jack", "CS"));
+    stack.push(new Node(2015130100, "Paul", "ME"));
+    stack.push(new Node(2015130135, "Tim", "EE"));
+    stack.display();
+
+    Node* node = stack.pop();
+    printf("[Pop]\n");
+    node->display();
+    printf("\n");
+    delete node;
+    stack.display();
     
     return 0;
-    
 }
