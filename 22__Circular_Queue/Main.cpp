@@ -12,15 +12,15 @@ inline void error(char* str){
 class CircularQueue
 {
 	protected:
-	int front;
-	int rear;
+	int front; //첫번째 요 앞의 위치
+	int rear; //마지막 요소 위치
 	int data[MAX_QUEUE_SIZE];
 	
 	public:
 		CircularQueue() {front=rear=0;}
 		~CircularQueue() {} 
 		bool isEmpty() {return front ==rear;}
-		bool isFull() {return (rear+1)%MAX_QUEUE_SIZE == front;}
+		bool isFull() {return (rear+1)%MAX_QUEUE_SIZE == front;} //한자리 비워두었다+1
 		
 	void enqueue(int val){
 		if(isFull())
@@ -36,7 +36,8 @@ class CircularQueue
 			error("Error:큐가 공백상태입니다.\n");
 		else{
 			front = (front+1) % MAX_QUEUE_SIZE;
-			return data[front];
+			return data[front]; //실제로 없어지지 않지만 front 다음이 원소락 약속해서 ㅇㅇ
+			
 		}
 	}
 	
@@ -49,8 +50,7 @@ class CircularQueue
 	
 	void display(){
 		printf("큐 내용 : ");
-		int maxi = (front < rear) ? rear :
-	rear+MAX_QUEUE_SIZE;
+		int maxi = (front < rear) ? rear : rear+MAX_QUEUE_SIZE; //front가 더 크면 한바쿠 돈거라 size만큼 플러스
 		for(int i=front+1; i<=maxi; i++)
 			printf("[%2d]", data[i%MAX_QUEUE_SIZE]);
 		printf("\n");
