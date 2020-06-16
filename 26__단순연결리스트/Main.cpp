@@ -2,36 +2,37 @@
 using namespace std;
 
 class Node{
-    public:
-        char m;
-        Node *link; //node를 가르키는 ponter link
+public:
+    char m; //node가 받는 형태
+    Node *link; //node와 link
     
-        Node(char a=0){
-            m=a; //class public에 선언한 m에 넣는거, clas 기본과 똑같쥬?
-            link=NULL;
-        }
-    void insertNext(Node *nextNode){ // 내 뒤에 노드 추가
-        nextNode->link=link;
-        link=nextNode;
+    Node(char a=0){
+        m=a;
+        link = NULL;
+    } //생성자 ㅡㅡ 역할 제대로
+    
+    void insertNext(Node *nextNode){
+        nextNode->link = link;
+        link = nextNode;
     }
     
-    void insertFront(Node *frontNode){ //앞에 삽입
-        frontNode->link=link; //프론트의 링크를 링크로 바꿔줌(붙여)
-        link=frontNode; //링크를 프론트노드로
+    void insertFront(Node *frontNode){
+        frontNode->link = link;
+        link = frontNode;
     }
     
-    void removeNext(){ //넥스트 지움
-        if(link!=NULL) link=link->link;
-        //앞의 링크를 링크의 링크(뛰어 넘어가)
+    void removeNext(){
+        if(link != NULL)
+            link = link->link;
     }
     
     void display(){
-        Node *p=link; //헤드의 링크를...
-        while(p!=NULL){ //n개
-            cout<< p->m <<" ";
-            p=p->link; //p 를 p의 링크로 바꾸래
+        Node *p=link;
+        while (p!=NULL){
+            cout << p->m <<" "; //공백
+            p= p->link; //p는 p의 링크로
         }
-        cout<<endl;
+        cout<<endl; //엔터
     }
 };
 
@@ -51,8 +52,8 @@ int main()
     head.removeNext();
     head.display(); //edabc
     
-    head.link->link->insertNext(new Node('g'));
-    head.link->link->insertFront(new Node('h'));
+    head.link->link->insertNext(new Node('g')); //e d "g" a b c
+    head.link->link->insertFront(new Node('h')); //e d "h" g a b c
     head.display(); //edhgabc, g들가고 그 다음에 h또 들어감
     
     return 0;
