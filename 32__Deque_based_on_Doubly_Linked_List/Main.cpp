@@ -15,6 +15,7 @@ class Node2{
 	void setPrev(Node2* p){prev=p;}
 	void setNext(Node2* n){next=n;}
 	void display(){printf(" <%2d>", data);}
+	
 	void insertNext(Node2 *n){
 		if(n!=NULL){
 			n->prev=this;
@@ -73,7 +74,7 @@ public:
 void addFront (Node2* n) {insert(0,n);}
 Node2* deleteFront () {return remove(0);}
 Node2* getFront () {return getEntry(0);}
-void addRear (Node2* n) {insert(size(), n);}
+void addRear (Node2* n) {insert(size(), n);} //마지막은 size()-1이니 size()에 추가. 뒤에 ㄷ ㅓ추가
 Node2* deleteRear() {return remove(size()-1);}
 Node2* getRear () {return getEntry(size()-1);}
 };//class LinkedDeque 끝
