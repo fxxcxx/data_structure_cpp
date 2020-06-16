@@ -34,38 +34,44 @@ inline void error(char* str){
 };
 
 //Studentstack : 학생정보 스택 클래스
-
-class StudentStack
-{
-    int top; //요소의 개수
-    Student data[MAX_STACK_SIZE]; //요소의 배열 data는 student class에 있는걸 따른다!!
+class StudentStack{
     
-    public:
-        StudentStack() {top = -1;}
-        ~StudentStack(){}
-        bool isEmpty() {return top == -1;}
-        bool isFull() {return top==MAX_STACK_SIZE-1;}
+    int top;
+    Student data[MAX_STACK_SIZE];
     
-        void push (Student e){
-        if(isFull()) error("스택 포화 에러");
-        data[++top]=e;
-    }
+public:
+    StudentStack() {top = -1;} //위에 있는걸 초기값을 해줘 ㅡㅡ
+    ~StudentStack () {}
+    bool isEmpty() {return top == -1;}
+    bool isFull() {return top == MAX_STACK_SIZE-1;}
     
-    Student pop(){
-        if(isEmpty()) error("스택 공백 에러");
-        return data[top--];
+    void push(Student e){ //student class..
+        if(isFull()) error("스택포화에러");//push, pop은 무조건 bool조건 체킹
+        else{
+            data[++top] = e;
+        }
+        
     }
-    Student peek(){
-        if(isEmpty()) error("스택 공백 에러");
-        //else return data[top];
-        return data[top];
-    }
-    void display(){
-        printf("[전체 학생의 수 = %2d]\n", top+1);
-        for(int i=0; i<=top; i++)
-            data[i].display();
-        printf("\n");
-    }
+        
+        Student pop(){ //return 값이 student라서 ㅎ ㅎ
+            if(isEmpty()) error("스택 공백 에러");
+            else{
+                return data[top--]; //pop이나 dequeue나 return은 똑같넹
+            }
+            return 0;
+        }
+        
+        Student peek(){
+            if(isEmpty()) error("스택 공백 에러");
+            return data[top];
+        }
+        
+        void display(){
+            printf("전체 학생의 수 = %2d", top+1);
+            for(int i=0; i<=top; i++)
+                data[i].display(); //꼴 외우기
+            printf("\n");
+        }
 };
 
 int main()
