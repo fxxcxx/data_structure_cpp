@@ -10,24 +10,24 @@ class Node2{
 	
 	public:
 	Node2(int val=0) : data(val), prev(NULL), next(NULL){	}
-	Node2* getPrev() {return prev;}
+	Node2* getPrev() {return prev;} //포인터를 넘겨야해서 포잉터형
 	Node2* getNext() {return next;}
-	void setPrev(Node2* p) {prev=p;}
+	void setPrev(Node2* p) {prev=p;} //세팅을 포인터를 받앗 넣어줌, 리턴타입 없어서 void
 	void setNext(Node2* n) {next=n;}
 	void display() {printf( "<%2d> ", data); }
 
 
-	void insertNext(Node2 *n){
+	void insertNext(Node2 *n){ //insertnext를 호출한건 현재노드
 		if(n != NULL) {
-			n->prev = this;
-			n->next = next;
-			if(next != NULL) next->prev = n;
-			next = n;
+			n->prev = this; //나 자신 호출
+			n->next = next; //다음 노드
+			if(next != NULL) next->prev = n; //넥스트의 이전을 n으로 바꿈
+			next = n; //없으면 바로 n
 		}
 	}
 	
-	Node2* remove(){
-		if(prev != NULL)
+	Node2* remove(){ //노드으 포인터     현재노드
+		if(prev != NULL)  // ㅁ <-> ㅁ <-> ㅁ
 			prev -> next = next;
 		if(next != NULL)
 			next -> prev = prev;
@@ -40,9 +40,9 @@ class DblLinkedList{
 	Node2 org;
 	
 public:
-	DblLinkedList() : org(0) {}
-	~DblLinkedList() {clear();}
-	Node2* getHead() {return org.getNext(); }
+	DblLinkedList() : org(0) {} //생성자
+	~DblLinkedList() {clear();} //소멸자
+	Node2* getHead() {return org.getNext(); } //ㅁ(org) -> ㅁ(getnext)
 	bool isEmpty()
 	{
 		if(getHead() == NULL)
