@@ -3,7 +3,7 @@ using namespace std;
 
 double power(double x, int n)
 {	
-	if(n==0) //x가 아닌 n을 조건으로 두어야 함
+	if(n==0) //x가 아닌 n을 조건으로 두어야 함 return 1이나 0은 꼭 있어야된다.
 		return 1;
 	
 	else 
